@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde Humanizada</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <img class="logo" src="assets/Saúde Humanizada branco 1.png" alt="Logo">
+        <ul>
+            <li id ='nomedisplay'></li>
+            <li><a href="/" class="links">Home</a></li>
+            <li><a href="/login" class="links">Login</a></li>
+            <li><a href="/sobre" class="links">Sobre Nós</a></li>
+            <li><a href="/medicamentos" class="links">Medicamentos</a></li>
+            <li><a href="/naturais" class="links">Medicamentos Naturais</a></li>
+            <li><a href="/dietas" class="links">Dieta e Nutrição</a></li>
+        </ul>
+    </nav>
+
+    <div class="main_content">
+        <div class="image_container">
+            <img class="image_ilustrativa" src="assets/IMG_8546 (1) 1.png" alt="imagem ilustrativa">
+        </div>
+
+        <div class="form-container">
+            <p class="cadastre-se">Faça o login</p>
+            <br>
+            <br>
+            <input type="text" placeholder="Usuário" id = "usuario">
+            <br>
+            <input id="senha1" type="password" placeholder="Senha">
+            <br>
+            <button type="submit" id="entrar" onclick="verificacao()">Entrar</button>
+            <br>
+            <br>
+            <br>
+            <p class="outrasopções"><a href="" class="outrasopções">Esqueci a senha</a></p>
+            <br>
+            <br>
+            <p class="outrasopções"><a href="/cadastre" class="outrasopções">Cadastre-se</a></p>
+        </div>
+    </div>
+    <script>
+        function verificacao() {
+            var senha1 = document.getElementById('senha1').value;
+            var senhaCadastrada = localStorage.getItem('senha');
+            var usuario = document.getElementById('usuario').value;
+            var emailCadastrado = localStorage.getItem('email');
+
+            if (usuario != emailCadastrado) {
+                alert("Usuário não encontrado!");
+            } else if (senha1 != senhaCadastrada) {
+                alert("Senha incorreta!");
+            } else {
+                alert("Login bem sucedido!");
+                window.location.href = '/'; 
+            }
+        }
+    </script>
+
+    <script>
+        var nome = localStorage.getItem('nome');
+            window.onload = function(){
+                document.getElementById('nomedisplay').innerHTML = nome;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+
+    <title>Saúde Humanizada: Página Principal</title>
+</head>
+<body>
+    <nav>
+    <img class="logo" src="assets/Saúde Humanizada branco 1.png" alt="Logo">
+        <ul>
+            <li id ='nomedisplay'></li>
+            <li><a href="/" class="links">Home</a></li>
+            <li><a href="/login" class="links">Login</a></li>
+            <li><a href="/sobre" class="links">Sobre Nós</a></li>
+            <li><a href="/medicamentos" class="links">Medicamentos</a></li>
+            <li><a href="/naturais" class="links">Medicamentos Naturais</a></li>
+            <li><a href="/dietas" class="links">Dieta e Nutrição</a></li>
+        </ul>
+    </nav>
+
+    <div id="container">
+        <div class="menudeopcoes">
+            <!-- Esse trecho vai sumir quando você clicar numa doença -->
+            <div id="infoDoencas">
+                <h1>Medicamentos Naturais</h1>
+                <p>Vamos mostrar medicamentos naturais acessíveis de acordo com seu sintoma:</p>
+                <br>
+            </div>
+
+            <!-- Botões das doenças -->
+            <div id="menubotoes" class="menubotoes">
+                <% data3.forEach((doencasnaturais, index) => { %>
+                <button onclick="doencas_medicamentos()" id="doenca<%= index + 1 %>" class="botoes"><%= doencasnaturais.nome %></button>
+                <% }); %>
+                </div>
+
+            <!-- Menu de medicamentos (inicialmente oculto) -->
+            <div id="menuDoenca" class="hidden">
+                <% data4.forEach((remediosnaturais, index) => { %>
+                <button onclick="medicamentos_detalhes(<%=index%>+1)" id="remediosnaturais<%= index + 1 %>" class="botoes"><%= remediosnaturais.nome%></button>
+                <% }); %>
+                    <br>
+                <button id="voltarMedicamentos" class="botoes" onclick="medicamentos_doencas()">Voltar</button>
+            </div>
+
+                <% data4.forEach((remediosnaturais, index) => { %>
+            <div id="detalhesremedio<%=index+1%>" class="hidden detalhes">
+
+                <h3 id="detalhesremedio<%= index + 1 %>"><%= remediosnaturais.nome%></h3>
+                <p id="detalhesremedio<%= index + 1 %>"><%= remediosnaturais.descrição%></p>
+    
+                <button id="voltarMedicamentos" class="botoes" onclick="detalhes_medicamentos(<%=index+1%>)">Voltar</button> 
+            </div>
+            <% }); %>
+
+
+    <script>
+        var nome = localStorage.getItem('nome');
+        window.onload = function() {
+        if (!localStorage.getItem('email')) {
+            alert("Você precisa estar logado para acessar esta página!");
+            window.location.href = '/login'; 
+        }
+            document.getElementById('nomedisplay').innerHTML = nome;
+        };
+    </script>
+
+    <script src="script.js"> </script>
